@@ -42,16 +42,26 @@ class LinkedList{
         }
     }
 
+    public void printlist(){
+        Node current = this.head;
+        while (current!=null){
+            System.out.print(current.getData());
+            current= current.getNext();
+        }
+    }
+
 }
 public class Servidor {
     public static void main(String[] args) {
-        Object lista1 = new LinkedList();
-        Object lista2 = new LinkedList();
-        Object lista3 = new LinkedList();
+        LinkedList lista1 = new LinkedList();
+        LinkedList lista2 = new LinkedList();
+        LinkedList lista3 = new LinkedList();
 
         lista1.insert(8);
         lista2.insert(5);
         lista3.insert(4);
+
+        lista1.printlist();
 
 
     }
