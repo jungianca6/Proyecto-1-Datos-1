@@ -57,6 +57,10 @@ public class Servidor {
         LinkedList lista2 = new LinkedList();
         LinkedList lista3 = new LinkedList();
 
+        Node node1 = new Node(lista1);
+        Node node2 = new Node(lista2);
+        Node node3 = new Node(lista3);
+
         lista1.insert(1);
         lista1.insert(2);
         lista1.insert(3);
@@ -74,6 +78,7 @@ public class Servidor {
         lista2.printlist();
         System.out.println("");
         lista3.printlist();
+
 
 
     }
