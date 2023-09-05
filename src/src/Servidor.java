@@ -71,5 +71,11 @@ public class Servidor {
         fila3.insert(8);
         fila3.insert(9);
         matriz.insert(fila3);
+
+        fila1.printlist();
+        System.out.println();
+        fila2.printlist();
+        System.out.println();
+        fila3.printlist();
     }
 }
