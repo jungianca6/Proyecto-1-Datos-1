@@ -76,9 +76,19 @@ public class Servidor {
         node3.setNext(null);
 
         lista1.printlist();
-        System.out.println("");
+        System.out.println();
         lista2.printlist();
-        System.out.println("");
+        System.out.println();
         lista3.printlist();
+        printMatrix(node1);
+    }
+    public static void printMatrix(Node startNode) {
+        Node currentNode = startNode;
+        while (currentNode != null) {
+            LinkedList currentList = (LinkedList) currentNode.getData();
+            currentList.printlist();
+            System.out.println();
+            currentNode = currentNode.getNext();
+        }
     }
 }
