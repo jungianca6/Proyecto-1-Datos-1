@@ -49,22 +49,20 @@ class LinkedList{
             current= current.getNext();
         }
     }
-
 }
 public class Servidor {
     public static void main(String[] args) {
         LinkedList lista1 = new LinkedList();
-        LinkedList lista2 = new LinkedList();
-        LinkedList lista3 = new LinkedList();
-
         lista1.insert(1);
         lista1.insert(2);
         lista1.insert(3);
 
+        LinkedList lista2 = new LinkedList();
         lista2.insert(4);
         lista2.insert(5);
         lista2.insert(6);
 
+        LinkedList lista3 = new LinkedList();
         lista3.insert(7);
         lista3.insert(8);
         lista3.insert(9);
@@ -82,9 +80,5 @@ public class Servidor {
         lista2.printlist();
         System.out.println("");
         lista3.printlist();
-
-
-
-
     }
 }
