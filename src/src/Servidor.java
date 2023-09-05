@@ -52,43 +52,24 @@ class LinkedList{
 }
 public class Servidor {
     public static void main(String[] args) {
-        LinkedList lista1 = new LinkedList();
-        lista1.insert(1);
-        lista1.insert(2);
-        lista1.insert(3);
+        LinkedList matriz = new LinkedList();
+        LinkedList fila1 = new LinkedList();
+        LinkedList fila2 = new LinkedList();
+        LinkedList fila3 = new LinkedList();
 
-        LinkedList lista2 = new LinkedList();
-        lista2.insert(4);
-        lista2.insert(5);
-        lista2.insert(6);
+        fila1.insert(1);
+        fila1.insert(2);
+        fila1.insert(3);
+        matriz.insert(fila1);
 
-        LinkedList lista3 = new LinkedList();
-        lista3.insert(7);
-        lista3.insert(8);
-        lista3.insert(9);
+        fila2.insert(4);
+        fila2.insert(5);
+        fila2.insert(6);
+        matriz.insert(fila2);
 
-        Node node1 = new Node(lista1);
-        Node node2 = new Node(lista2);
-        Node node3 = new Node(lista3);
-
-        node1.setNext(node2);
-        node2.setNext(node3);
-        node3.setNext(null);
-
-        lista1.printlist();
-        System.out.println();
-        lista2.printlist();
-        System.out.println();
-        lista3.printlist();
-        printMatrix(node1);
-    }
-    public static void printMatrix(Node startNode) {
-        Node currentNode = startNode;
-        while (currentNode != null) {
-            LinkedList currentList = (LinkedList) currentNode.getData();
-            currentList.printlist();
-            System.out.println();
-            currentNode = currentNode.getNext();
-        }
+        fila3.insert(7);
+        fila3.insert(8);
+        fila3.insert(9);
+        matriz.insert(fila3);
     }
 }
