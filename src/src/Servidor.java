@@ -47,9 +47,11 @@ class LinkedList{
         while (current!=null){
             System.out.print(current.getData());
             current= current.getNext();
-        }
+            }
+            System.out.println();
     }
 }
+
 public class Servidor {
     public static void main(String[] args) {
         LinkedList matriz = new LinkedList();
@@ -72,10 +74,8 @@ public class Servidor {
         fila3.insert(9);
         matriz.insert(fila3);
 
-        fila1.printlist();
-        System.out.println();
-        fila2.printlist();
-        System.out.println();
-        fila3.printlist();
+        matriz.printlist();
     }
+
 }
+
