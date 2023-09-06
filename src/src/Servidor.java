@@ -42,16 +42,16 @@ class LinkedList{
         }
     }
 
-    public void printList(){
+    public void printMatrix(){
         Node current = this.head;
         while (current!=null) {
             LinkedList currentList = (LinkedList) current.getData();
-            currentList.printCurrentList();
+            currentList.printList();
             System.out.println();
             current = current.getNext();
         }
     }
-    public void printCurrentList(){
+    public void printList(){
         Node current = this.head;
         while (current !=null) {
             System.out.print(current.getData());
@@ -82,7 +82,7 @@ public class Servidor {
         fila3.insert(9);
         matriz.insert(fila3);
 
-        matriz.printList();
+        matriz.printMatrix();
     }
 
 }
