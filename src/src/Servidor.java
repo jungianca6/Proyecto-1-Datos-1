@@ -51,7 +51,6 @@ class LinkedList{
             current = current.getNext();
         }
     }
-
     public void printCurrentList(){
         Node current = this.head;
         while (current !=null) {
