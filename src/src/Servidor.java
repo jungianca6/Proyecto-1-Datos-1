@@ -62,28 +62,37 @@ class LinkedList{
 
 public class Servidor {
     public static void main(String[] args) {
-        LinkedList matriz = new LinkedList();
-        LinkedList fila1 = new LinkedList();
-        LinkedList fila2 = new LinkedList();
-        LinkedList fila3 = new LinkedList();
+        LinkedList matriz1 = new LinkedList();
+        int i;
+        int j;
+        for (i=0;i<3;i++) {
+            LinkedList fila = new LinkedList();
+            for (j = 0; j<3; j++) {
+                fila.insert(j);
+            }
+            matriz1.insert(fila);
+        }
+        matriz1.printMatrix();
 
-        fila1.insert(1);
-        fila1.insert(2);
-        fila1.insert(3);
-        matriz.insert(fila1);
+        LinkedList matriz2 = new LinkedList();
+        for (i=0;i<5;i++) {
+            LinkedList fila = new LinkedList();
+            for (j = 0; j<5; j++) {
+                fila.insert(j);
+            }
+            matriz2.insert(fila);
+        }
+        matriz2.printMatrix();
 
-        fila2.insert(4);
-        fila2.insert(5);
-        fila2.insert(6);
-        matriz.insert(fila2);
-
-        fila3.insert(7);
-        fila3.insert(8);
-        fila3.insert(9);
-        matriz.insert(fila3);
-
-        matriz.printMatrix();
+        LinkedList matriz3 = new LinkedList();
+        for (i=0;i<10;i++) {
+            LinkedList fila = new LinkedList();
+            for (j = 0; j<10; j++) {
+                fila.insert(j);
+            }
+            matriz3.insert(fila);
+        }
+        matriz3.printMatrix();
     }
-
 }
 
