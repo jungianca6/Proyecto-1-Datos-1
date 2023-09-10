@@ -2,6 +2,15 @@ import java.net.*;
 import java.io.*;
 import javax.swing.*;
 import java.awt.*;
+
+class VentanaServer extends JFrame{
+    public VentanaServer(){
+        this.setSize(400,400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Servidor");
+    }
+}
+
 class Node {
     private Object data;
     protected Node next;
@@ -65,6 +74,11 @@ class LinkedList{
 
 public class Servidor {
     public static void main(String[] args) {
+        /**instancia de la ventana de servidor
+         */
+        VentanaServer v1 = new VentanaServer();
+        v1.setVisible(true);
+
         LinkedList matriz1 = new LinkedList();
         int i;
         int j;
