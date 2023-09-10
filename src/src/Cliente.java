@@ -6,8 +6,22 @@ import java.awt.*;
 class VentanaClient extends JFrame{
     public VentanaClient(){
         this.setBounds(500,200,300,400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Cliente");
+        Componentes();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    private void Componentes(){
+        JPanel panel = new JPanel();
+        this.getContentPane().add(panel);
+        panel.setBackground(new Color(118,181,197));
+
+        JLabel etiqueta = new JLabel("Hola");
+        panel.add(etiqueta);
+
+        etiqueta.setBounds(10,10,50,50);
+        panel.setLayout(null);
+
+
     }
 }
 public class Cliente {
