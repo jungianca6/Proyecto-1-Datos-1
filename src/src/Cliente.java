@@ -15,10 +15,14 @@ class VentanaClient extends JFrame{
         this.getContentPane().add(panel);
         panel.setBackground(new Color(118,181,197));
 
-        JLabel etiqueta = new JLabel("Hola");
+        JLabel etiqueta = new JLabel("Hola",SwingConstants.CENTER);
         panel.add(etiqueta);
+        etiqueta.setBounds(50,10,50,30);
+        etiqueta.setForeground(Color.WHITE);
+        etiqueta.setBackground(Color.BLACK);
+        etiqueta.setFont(new Font("times new roman", Font.PLAIN,20));
 
-        etiqueta.setBounds(10,10,50,50);
+        etiqueta.setOpaque(true);
         panel.setLayout(null);
 
 
