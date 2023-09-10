@@ -5,7 +5,7 @@ import java.awt.*;
 
 class VentanaServer extends JFrame{
     public VentanaServer(){
-        this.setSize(400,400);
+        this.setBounds(500,200,300,400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Servidor");
     }
