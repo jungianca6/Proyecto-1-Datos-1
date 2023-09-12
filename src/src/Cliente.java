@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.*;
 import java.io.*;
+import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,7 +34,7 @@ class VentanaClient extends JFrame{
         panel.add(boton);
 
         etiqueta.setOpaque(true);
-        panel.setLayout(null);
+        panel.setLayout(nul l);
         boton.setEnabled(true);
 
         ActionListener enviaTexto = new ActionListener() {
@@ -47,10 +48,13 @@ class VentanaClient extends JFrame{
 
 }
 public class Cliente {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /**instancia de la ventana de servidor
          */
         VentanaClient v1 = new VentanaClient();
         v1.setVisible(true);
+
+        Socket client = new Socket("localhost",9090);
+
     }
 }

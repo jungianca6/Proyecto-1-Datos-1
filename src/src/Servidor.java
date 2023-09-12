@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -73,11 +74,16 @@ class LinkedList{
 }
 
 public class Servidor {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /**instancia de la ventana de servidor
          */
         VentanaServer v1 = new VentanaServer();
         v1.setVisible(true);
+
+        ServerSocket server = new ServerSocket(9090);
+        Socket listenSocket = server.accept();
+        BufferedReader clientinput = new BufferedReader(new InputStreamReader(listenSocket.getInputStream()));
+        System.out.println("Cliente conectado");
 
         LinkedList matriz1 = new LinkedList();
         int i;
@@ -112,4 +118,3 @@ public class Servidor {
         matriz3.printMatrix();
     }
 }
-
