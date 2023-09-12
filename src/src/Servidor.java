@@ -80,10 +80,14 @@ public class Servidor {
         VentanaServer v1 = new VentanaServer();
         v1.setVisible(true);
 
-        ServerSocket server = new ServerSocket(9090);
+        /*ServerSocket server = new ServerSocket(9090);
         Socket listenSocket = server.accept();
         BufferedReader clientinput = new BufferedReader(new InputStreamReader(listenSocket.getInputStream()));
+        String client_str;
+        client_str = clientinput.readLine();
         System.out.println("Cliente conectado");
+        System.out.println(client_str);
+        */
 
         LinkedList matriz1 = new LinkedList();
         int i;

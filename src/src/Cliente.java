@@ -34,7 +34,7 @@ class VentanaClient extends JFrame{
         panel.add(boton);
 
         etiqueta.setOpaque(true);
-        panel.setLayout(nul l);
+        panel.setLayout(null);
         boton.setEnabled(true);
 
         ActionListener enviaTexto = new ActionListener() {
@@ -54,7 +54,13 @@ public class Cliente {
         VentanaClient v1 = new VentanaClient();
         v1.setVisible(true);
 
-        Socket client = new Socket("localhost",9090);
-
+        /*Socket client = new Socket("localhost",9090);
+        BufferedReader userinput = new BufferedReader(new InputStreamReader(System.in));
+        DataOutputStream serverout = new DataOutputStream(client.getOutputStream());
+        String str;
+        str= userinput.readLine();
+        serverout.writeBytes(str+"\n");
+        client.close();
+        */
     }
 }
