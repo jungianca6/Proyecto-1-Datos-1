@@ -53,8 +53,26 @@ class VentanaClient extends JFrame{
 
         ActionListener enviaTexto = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {
-                System.out.println(chatTexto.getText());
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    /**creacion del socket
+                    */
+                    Socket miSocket = new Socket("localhost",9090);
+                    /**
+                     flujo de datos de salida que circula por el socket.
+                     *Puente virtual
+                     */
+                    DataOutputStream flujosalida = new DataOutputStream(miSocket.getOutputStream());
+                    /**
+                     * en el flujo de datos va a viajar el texto
+                     * capturado del campo de texto
+                     */
+                    flujosalida.writeUTF(chatTexto.getText());
+                    /**cierra el flujo de datos*/
+                    flujosalida.close();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         boton.addActionListener(enviaTexto);
@@ -67,14 +85,5 @@ public class Cliente {
          */
         VentanaClient v1 = new VentanaClient();
         v1.setVisible(true);
-
-        /*Socket client = new Socket("localhost",9090);
-        BufferedReader userinput = new BufferedReader(new InputStreamReader(System.in));
-        DataOutputStream serverout = new DataOutputStream(client.getOutputStream());
-        String str;
-        str= userinput.readLine();
-        serverout.writeBytes(str+"\n");
-        client.close();
-        */
     }
 }

@@ -4,11 +4,75 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-class VentanaServer extends JFrame{
+/**
+ * Implementando Runnable hace
+ * que siempre esté a la escucha
+ */
+class VentanaServer extends JFrame implements Runnable{
+    private JPanel panelSV;
+    private JTextArea areaTextoSV;
     public VentanaServer(){
-        this.setBounds(500,200,300,400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setBounds(500,200,400,500);
         setTitle("Servidor");
+
+        componentesServer();
+
+        /**
+         * construimos el hilo para que siempre escuche
+         */
+        Thread mihilo = new Thread(this);
+        mihilo.start();
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    private void componentesServer(){
+        colocarPanelSV();
+        colocarAreaTexto();
+    }
+    private void colocarPanelSV(){
+        panelSV = new JPanel();
+        panelSV.setLayout(null);
+        this.getContentPane().add(panelSV);
+    }
+
+    private void colocarAreaTexto(){
+        areaTextoSV = new JTextArea();
+        areaTextoSV.setBounds(0,100,400,200);
+        panelSV.add(areaTextoSV);
+        areaTextoSV.setEditable(true);
+    }
+
+    @Override
+    public void run() {
+        try {
+            ServerSocket servidor = new ServerSocket(9090);
+
+            while(true) {
+
+                /**
+                 *que acepte las conexiones del exterior
+                 */
+                Socket misocket = servidor.accept();
+                /**
+                 * flujo de entrada
+                 */
+                DataInputStream flujoentrada = new DataInputStream(misocket.getInputStream());
+                /**
+                 * permite leer lo que viene en ese flujo de entrada
+                 */
+                String mensajetexto = flujoentrada.readUTF();
+
+                /**
+                 * escribe el texto que recibe
+                 */
+                areaTextoSV.append("\n" + "Gianca:" + mensajetexto);
+
+                /**cierra el flujo de datos*/
+                misocket.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
@@ -79,15 +143,6 @@ public class Servidor {
          */
         VentanaServer v1 = new VentanaServer();
         v1.setVisible(true);
-
-        /*ServerSocket server = new ServerSocket(9090);
-        Socket listenSocket = server.accept();
-        BufferedReader clientinput = new BufferedReader(new InputStreamReader(listenSocket.getInputStream()));
-        String client_str;
-        client_str = clientinput.readLine();
-        System.out.println("Cliente conectado");
-        System.out.println(client_str);
-        */
 
         LinkedList matriz1 = new LinkedList();
         int i;
