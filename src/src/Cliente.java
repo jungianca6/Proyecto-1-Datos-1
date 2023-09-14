@@ -11,6 +11,7 @@ class VentanaClient extends JFrame{
     private JLabel etiqueta;
     private JTextField chatTexto;
     private JButton boton;
+    private JTextField cajaChat;
 
 
     public VentanaClient(){
@@ -25,6 +26,7 @@ class VentanaClient extends JFrame{
         colocarEtiqueta();
         colocarCajadeTexto();
         colocarBoton();
+        colocarArea();
     }
     private void colocarPanel(){
         panel = new JPanel();
@@ -50,6 +52,11 @@ class VentanaClient extends JFrame{
         boton.setBounds(140,80,100,30);
         panel.add(boton);
         boton.setEnabled(true);
+
+    private void colocarArea(){
+        cajaChat = new JTextField();
+        cajaChat.setBounds(0,50,400,100);
+        }
 
         ActionListener enviaTexto = new ActionListener() {
             @Override
