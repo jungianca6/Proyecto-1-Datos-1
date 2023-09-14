@@ -63,7 +63,7 @@ class VentanaServer extends JFrame implements Runnable{
                 ip = paqueteRecibido.getIp();
                 mensaje = paqueteRecibido.getMensaje();
 
-                areaTextoSV.append("\n"+ nick + ":" + mensaje + "para"+ ip);
+                areaTextoSV.append("\n"+ nick + ": " + mensaje + " para "  + ip);
 
                 /**cierra el flujo de datos*/
                 misocket.close();
