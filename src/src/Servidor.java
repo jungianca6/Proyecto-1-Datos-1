@@ -46,6 +46,8 @@ class VentanaServer extends JFrame implements Runnable{
     public void run() {
         try {
             ServerSocket servidor = new ServerSocket(9090);
+            String nick, ip, mensaje;
+            paqueteDatos paqueteRecibido;
 
             while(true) {
 
@@ -53,24 +55,20 @@ class VentanaServer extends JFrame implements Runnable{
                  *que acepte las conexiones del exterior
                  */
                 Socket misocket = servidor.accept();
-                /**
-                 * flujo de entrada
-                 */
-                DataInputStream flujoentrada = new DataInputStream(misocket.getInputStream());
-                /**
-                 * permite leer lo que viene en ese flujo de entrada
-                 */
-                String mensajetexto = flujoentrada.readUTF();
 
-                /**
-                 * escribe el texto que recibe
-                 */
-                areaTextoSV.append("\n" + "Gianca:" + mensajetexto);
+                ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
+                paqueteRecibido= (paqueteDatos) entradaDatos.readObject();
+
+                nick = paqueteRecibido.getNick();
+                ip = paqueteRecibido.getIp();
+                mensaje = paqueteRecibido.getMensaje();
+
+                areaTextoSV.append("\n"+ nick + ":" + mensaje + "para"+ ip);
 
                 /**cierra el flujo de datos*/
                 misocket.close();
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
