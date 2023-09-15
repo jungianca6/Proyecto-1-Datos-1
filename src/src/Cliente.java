@@ -113,7 +113,7 @@ class VentanaClient extends JFrame implements Runnable{
                 cliente = servidorcliente.accept();
                 ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
                 packRecibido = (paqueteDatos) flujoentrada.readObject();
-                cajaChat.append("\n"+ "(" + packRecibido.getIp() + ") " + packRecibido.getNick() + packRecibido.getMensaje());
+                cajaChat.append("\n"+ "(" + packRecibido.getIp() + ") " + packRecibido.getNick() + ": " + packRecibido.getMensaje());
             }
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
