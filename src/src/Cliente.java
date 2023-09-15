@@ -6,7 +6,7 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-class VentanaClient extends JFrame{
+class VentanaClient extends JFrame implements Runnable{
     private JPanel panel;
     private JLabel etiqueta;
     private JTextField chatTexto,nick,ip,puerto;
@@ -19,6 +19,10 @@ class VentanaClient extends JFrame{
         setTitle("Cliente");
 
         ComponentesCliente();
+
+        Thread mihilo = new Thread(this);
+        mihilo.start();
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     private void ComponentesCliente(){
@@ -93,6 +97,27 @@ class VentanaClient extends JFrame{
             }
         };
         boton.addActionListener(enviaTexto);
+    }
+
+    /**
+     * hilo que permite que este siempre a la escucha
+     */
+    @Override
+    public void run() {
+        try {
+            ServerSocket servidorcliente = new ServerSocket(9091);
+            Socket cliente;
+            paqueteDatos packRecibido;
+
+            while(true){
+                cliente = servidorcliente.accept();
+                ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
+                packRecibido = (paqueteDatos) flujoentrada.readObject();
+                cajaChat.append("\n"+ "(" + packRecibido.getIp() + ") " + packRecibido.getNick() + packRecibido.getMensaje());
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
