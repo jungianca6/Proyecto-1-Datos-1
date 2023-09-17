@@ -123,7 +123,7 @@ class VentanaClient extends JFrame implements Runnable{
 
 /**
  * Permite almacenar información a estos atributos
- * Obtener esa información
+ * obtener esa información.
  * El Serializable indica que todas las instancias que
    pertecenen a esta clase pueden convertirse en una serie de bytes
  */
@@ -152,7 +152,7 @@ public class Cliente {
     public static void main(String[] args){
         /**instancia de la ventana de servidor
          */
-        VentanaClient v1 = new VentanaClient();
-        v1.setVisible(true);
+        VentanaClient cliente1 = new VentanaClient();
+        cliente1.setVisible(true);
     }
 }

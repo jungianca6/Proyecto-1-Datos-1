@@ -146,8 +146,8 @@ public class Servidor {
     public static void main(String[] args) throws IOException {
         /**instancia de la ventana de servidor
          */
-        VentanaServer v1 = new VentanaServer();
-        v1.setVisible(true);
+        VentanaServer servidor = new VentanaServer();
+        servidor.setVisible(true);
 
         LinkedList matriz1 = new LinkedList();
         int i;
