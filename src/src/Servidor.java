@@ -55,7 +55,6 @@ class VentanaServer extends JFrame implements Runnable{
                  *que acepte las conexiones del exterior
                  */
                 Socket misocket = servidor.accept();
-                System.out.println("Here" + misocket.getInetAddress());
 
                 ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
                 paqueteRecibido= (paqueteDatos) entradaDatos.readObject();
