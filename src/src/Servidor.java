@@ -55,6 +55,7 @@ class VentanaServer extends JFrame implements Runnable{
                  *que acepte las conexiones del exterior
                  */
                 Socket misocket = servidor.accept();
+                System.out.println("Here" + misocket.getInetAddress());
 
                 ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
                 paqueteRecibido= (paqueteDatos) entradaDatos.readObject();
@@ -65,13 +66,22 @@ class VentanaServer extends JFrame implements Runnable{
 
                 areaTextoSV.append("\n"+ "("+ ip +") " + nick + ": " + mensaje );
 
-                Socket enviaDestinatario = new Socket(ip,9091);
+                /**reenvio de datos*/
 
-                ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
+                int port;
+                port = 9091;
+                for (int i = port; i<9100;i++){
+                    try{
+                        Socket enviaDestinatario = new Socket(ip,i);
 
-                paqueteReenvio.writeObject(paqueteRecibido);
+                        ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
 
-                enviaDestinatario.close();
+                        paqueteReenvio.writeObject(paqueteRecibido);
+
+                        enviaDestinatario.close();
+                    }
+                    catch (IOException e) {}
+                }
                 /**cierra el flujo de datos*/
                 misocket.close();
             }

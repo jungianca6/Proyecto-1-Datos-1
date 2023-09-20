@@ -104,19 +104,23 @@ class VentanaClient extends JFrame implements Runnable{
      */
     @Override
     public void run() {
-        try {
-            ServerSocket servidorcliente = new ServerSocket(9091);
-            Socket cliente;
-            paqueteDatos packRecibido;
+        int port;
+        port = 9091;
+        for (int i = port; i<9100;i++){
+            try {
+                ServerSocket servidorcliente = new ServerSocket(i);
+                Socket cliente;
+                paqueteDatos packRecibido;
 
-            while(true){
-                cliente = servidorcliente.accept();
-                ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
-                packRecibido = (paqueteDatos) flujoentrada.readObject();
-                cajaChat.append("\n"+ "(" + packRecibido.getIp() + ") " + packRecibido.getNick() + ": " + packRecibido.getMensaje());
+                while(true){
+                    cliente = servidorcliente.accept();
+                    ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
+                    packRecibido = (paqueteDatos) flujoentrada.readObject();
+                    cajaChat.append("\n"+ "(" + packRecibido.getIp() + ") " + packRecibido.getNick() + ": " + packRecibido.getMensaje());
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                //throw new RuntimeException(e);
             }
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 }
