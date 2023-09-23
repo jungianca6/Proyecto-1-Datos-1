@@ -152,21 +152,30 @@ class LinkedList{
     }
 }
 
-/*class Matriz (int n) {
-    int n;
-    LinkedList Matriz() = new LinkedList();
-    private int x;
-    private int y;
-        for (x=0;x<3;x++) {
-        LinkedList fila = new LinkedList();
-        for (y = 0; y<3; y++) {
-            fila.insert(y);
-        }
-        Matriz.insert(fila);
+class Matriz{
+    private int n;
+    private LinkedList matriz;
+    private Node head;
+
+    public Matriz(int n) {
+        this.n = n;
+        matriz = new LinkedList();
+        formMatriz();
+        this.head=null;
     }
-        Matriz.printMatrix();
+
+    public void formMatriz(){
+        int i;
+        int j;
+        for (i=0;i<n;i++) {
+            LinkedList fila = new LinkedList();
+            for (j = 0; j<n; j++) {
+                fila.insert(j);
+            }
+            matriz.insert(fila);
+        } matriz.printMatrix();
+    }
 }
-*/
 public class Servidor {
     public static void main(String[] args) {
         /**instancia de la ventana de servidor
@@ -174,9 +183,12 @@ public class Servidor {
         VentanaServer servidor = new VentanaServer();
         servidor.setVisible(true);
 
-        LinkedList matriz1 = new LinkedList();
-        int i;
-        int j;
+        Matriz matrizJuego = new Matriz(10);
+
+
+
+        /*LinkedList matriz1 = new LinkedList();
+
         for (i=0;i<3;i++) {
             LinkedList fila = new LinkedList();
             for (j = 0; j<3; j++) {
@@ -205,5 +217,7 @@ public class Servidor {
             matriz3.insert(fila);
         }
         matriz3.printMatrix();
+
+        */
     }
 }
