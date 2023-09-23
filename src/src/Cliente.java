@@ -5,6 +5,15 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 class VentanaClient extends JFrame implements Runnable{
     private JPanel panel;
@@ -89,6 +98,13 @@ class VentanaClient extends JFrame implements Runnable{
                     ObjectOutputStream salidaDatos = new ObjectOutputStream(miSocket.getOutputStream());
                     salidaDatos.writeObject(datos);
 
+                    // Convierte los datos a JSON
+                    String jsonDatos = datos.toJson();
+
+                    // Envía el JSON al servidor
+                    PrintWriter out = new PrintWriter(miSocket.getOutputStream(), true);
+                    out.println(jsonDatos);
+
                     miSocket.close();
 
                 } catch (IOException ex) {
@@ -151,6 +167,29 @@ class paqueteDatos implements Serializable{
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
+
+    // Métodos para convertir a JSON y desde JSON
+    public String toJson() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.writeValueAsString(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static paqueteDatos fromJson(String json) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(json, paqueteDatos.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
 public class Cliente {
     public static void main(String[] args){

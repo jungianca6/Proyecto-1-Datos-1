@@ -11,7 +11,7 @@ import java.awt.*;
  */
 class VentanaServer extends JFrame implements Runnable{
     private JPanel panelSV;
-    private JLabel serverlabel;
+    private JLabel serverLabel;
     public VentanaServer(){
         this.setBounds(500,200,400,500);
         setTitle("Servidor");
@@ -37,13 +37,13 @@ class VentanaServer extends JFrame implements Runnable{
     }
 
     private void colocarEtiquetaServer(){
-        serverlabel = new JLabel("Servidor",SwingConstants.CENTER);
-        panelSV.add(serverlabel);
-        serverlabel.setBounds(140,20,100,25);
-        serverlabel.setForeground(Color.WHITE);
-        serverlabel.setBackground(Color.BLACK);
-        serverlabel.setFont(new Font("times new roman", Font.PLAIN,20));
-        serverlabel.setOpaque(true);
+        serverLabel = new JLabel("Servidor",SwingConstants.CENTER);
+        panelSV.add(serverLabel);
+        serverLabel.setBounds(140,20,100,25);
+        serverLabel.setForeground(Color.WHITE);
+        serverLabel.setBackground(Color.BLACK);
+        serverLabel.setFont(new Font("times new roman", Font.PLAIN,20));
+        serverLabel.setOpaque(true);
     }
 
 
@@ -60,6 +60,16 @@ class VentanaServer extends JFrame implements Runnable{
                  *que acepte las conexiones del exterior
                  */
                 Socket misocket = servidor.accept();
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(misocket.getInputStream()));
+                String jsonDatos = in.readLine();
+
+                paqueteDatos datosCliente = paqueteDatos.fromJson(jsonDatos);
+                nick = datosCliente.getNick();
+                ip = datosCliente.getIp();
+                mensaje = datosCliente.getMensaje();
+
+
 
                 ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
                 paqueteRecibido= (paqueteDatos) entradaDatos.readObject();
