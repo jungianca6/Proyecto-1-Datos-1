@@ -10,7 +10,7 @@ import java.awt.*;
  */
 class VentanaServer extends JFrame implements Runnable{
     private JPanel panelSV;
-    private JTextArea areaTextoSV;
+    private JLabel serverlabel;
     public VentanaServer(){
         this.setBounds(500,200,400,500);
         setTitle("Servidor");
@@ -27,7 +27,7 @@ class VentanaServer extends JFrame implements Runnable{
     }
     private void componentesServer(){
         colocarPanelSV();
-        colocarAreaTexto();
+        colocarEtiquetaServer();
     }
     private void colocarPanelSV(){
         panelSV = new JPanel();
@@ -35,12 +35,16 @@ class VentanaServer extends JFrame implements Runnable{
         this.getContentPane().add(panelSV);
     }
 
-    private void colocarAreaTexto(){
-        areaTextoSV = new JTextArea();
-        areaTextoSV.setBounds(0,100,400,200);
-        panelSV.add(areaTextoSV);
-        areaTextoSV.setEditable(true);
+    private void colocarEtiquetaServer(){
+        serverlabel = new JLabel("Servidor",SwingConstants.CENTER);
+        panelSV.add(serverlabel);
+        serverlabel.setBounds(140,20,100,25);
+        serverlabel.setForeground(Color.WHITE);
+        serverlabel.setBackground(Color.BLACK);
+        serverlabel.setFont(new Font("times new roman", Font.PLAIN,20));
+        serverlabel.setOpaque(true);
     }
+
 
     @Override
     public void run() {
@@ -59,11 +63,7 @@ class VentanaServer extends JFrame implements Runnable{
                 ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
                 paqueteRecibido= (paqueteDatos) entradaDatos.readObject();
 
-                nick = paqueteRecibido.getNick();
                 ip = paqueteRecibido.getIp();
-                mensaje = paqueteRecibido.getMensaje();
-
-                areaTextoSV.append("\n"+ "("+ ip +") " + nick + ": " + mensaje );
 
                 /**reenvio de datos*/
 
@@ -112,6 +112,7 @@ class Node {
         this.next = next;
     }
 }
+
 class LinkedList{
     private Node head;
     private int size;
@@ -151,8 +152,23 @@ class LinkedList{
     }
 }
 
+/*class Matriz (int n) {
+    int n;
+    LinkedList Matriz() = new LinkedList();
+    private int x;
+    private int y;
+        for (x=0;x<3;x++) {
+        LinkedList fila = new LinkedList();
+        for (y = 0; y<3; y++) {
+            fila.insert(y);
+        }
+        Matriz.insert(fila);
+    }
+        Matriz.printMatrix();
+}
+*/
 public class Servidor {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         /**instancia de la ventana de servidor
          */
         VentanaServer servidor = new VentanaServer();

@@ -9,7 +9,7 @@ import java.awt.*;
 class VentanaClient extends JFrame implements Runnable{
     private JPanel panel;
     private JLabel etiqueta;
-    private JTextField chatTexto,nick,ip,puerto;
+    private JTextField chatTexto,nick,ip;
     private JButton boton;
     private JTextArea cajaChat;
 
