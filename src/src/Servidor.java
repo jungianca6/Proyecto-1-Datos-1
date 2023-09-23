@@ -184,40 +184,5 @@ public class Servidor {
         servidor.setVisible(true);
 
         Matriz matrizJuego = new Matriz(10);
-
-
-
-        /*LinkedList matriz1 = new LinkedList();
-
-        for (i=0;i<3;i++) {
-            LinkedList fila = new LinkedList();
-            for (j = 0; j<3; j++) {
-                fila.insert(j);
-            }
-            matriz1.insert(fila);
-        }
-        matriz1.printMatrix();
-
-        LinkedList matriz2 = new LinkedList();
-        for (i=0;i<5;i++) {
-            LinkedList fila = new LinkedList();
-            for (j = 0; j<5; j++) {
-                fila.insert(j);
-            }
-            matriz2.insert(fila);
-        }
-        matriz2.printMatrix();
-
-        LinkedList matriz3 = new LinkedList();
-        for (i=0;i<10;i++) {
-            LinkedList fila = new LinkedList();
-            for (j = 0; j<10; j++) {
-                fila.insert(j);
-            }
-            matriz3.insert(fila);
-        }
-        matriz3.printMatrix();
-
-        */
     }
 }
