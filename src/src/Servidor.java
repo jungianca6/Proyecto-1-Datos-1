@@ -5,6 +5,15 @@ import javax.swing.*;
 import java.awt.*;
 
 
+
+
+/** mae digame que ya le sale eso
+
+
+
+
+
+
 /**
  * Implementando Runnable hace
  * que siempre esté a la escucha
