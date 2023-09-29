@@ -95,10 +95,10 @@ class VentanaClient extends JFrame implements Runnable{
                     datos.setIp(ip.getText());
                     datos.setMensaje(chatTexto.getText());
 
+                    final String jsonAEnviar = datos.toJson();
                     ObjectOutputStream salidaDatos = new ObjectOutputStream(miSocket.getOutputStream());
-                    String json = datos.toJson();
-                    //salidaDatos.writeUTF(json);
-                    salidaDatos.writeChars(json);
+                    salidaDatos.writeObject(jsonAEnviar);
+
                     miSocket.close();
 
                 } catch (IOException ex) {
@@ -125,7 +125,8 @@ class VentanaClient extends JFrame implements Runnable{
                 while(true){
                     cliente = servidorcliente.accept();
                     ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
-                    packRecibido = (paqueteDatos) flujoentrada.readObject();
+                    final String jsonRecibido = (String) flujoentrada.readObject();
+                    packRecibido = paqueteDatos.fromJson(jsonRecibido);
                     cajaChat.append("\n"+ "(" + packRecibido.getIp() + ") " + packRecibido.getNick() + ": " + packRecibido.getMensaje());
                 }
             } catch (IOException | ClassNotFoundException e) {

@@ -52,7 +52,9 @@ class VentanaServer extends JFrame implements Runnable{
         try {
             ServerSocket servidor = new ServerSocket(9090);
             String nick, ip, mensaje;
+            String jsonRecibido;
             paqueteDatos paqueteRecibido;
+
 
             while(true) {
 
@@ -61,20 +63,15 @@ class VentanaServer extends JFrame implements Runnable{
                  */
                 Socket misocket = servidor.accept();
 
-                BufferedReader in = new BufferedReader(new InputStreamReader(misocket.getInputStream(),"UTF-8"));
-                String jsonDatos = in.readLine();
-
-                paqueteDatos datosCliente = paqueteDatos.fromJson(jsonDatos);
-                nick = datosCliente.getNick();
-                ip = datosCliente.getIp();
-                mensaje = datosCliente.getMensaje();
-
-
 
                 ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
-                paqueteRecibido= (paqueteDatos) entradaDatos.readObject();
+                jsonRecibido = (String) entradaDatos.readObject();
+                paqueteRecibido= paqueteDatos.fromJson(jsonRecibido);
 
+                nick = paqueteRecibido.getNick();
                 ip = paqueteRecibido.getIp();
+                mensaje = paqueteRecibido.getMensaje();
+
 
                 /**reenvio de datos*/
 
@@ -85,8 +82,8 @@ class VentanaServer extends JFrame implements Runnable{
                         Socket enviaDestinatario = new Socket(ip,i);
 
                         ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
-
-                        paqueteReenvio.writeObject(paqueteRecibido);
+                        final String jsonAEnviar = paqueteRecibido.toJson();
+                        paqueteReenvio.writeObject(jsonAEnviar);
 
                         enviaDestinatario.close();
                     }
