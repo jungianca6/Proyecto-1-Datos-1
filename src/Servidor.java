@@ -61,9 +61,9 @@ class VentanaServer extends JFrame implements Runnable{
                  */
                 Socket misocket = servidor.accept();
 
-                BufferedReader in = new BufferedReader(new InputStreamReader(misocket.getInputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(misocket.getInputStream(),"UTF-8"));
                 String jsonDatos = in.readLine();
-                        /**tengo que revisar esto*/
+
                 paqueteDatos datosCliente = paqueteDatos.fromJson(jsonDatos);
                 nick = datosCliente.getNick();
                 ip = datosCliente.getIp();

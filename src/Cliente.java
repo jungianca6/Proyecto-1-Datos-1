@@ -96,8 +96,9 @@ class VentanaClient extends JFrame implements Runnable{
                     datos.setMensaje(chatTexto.getText());
 
                     ObjectOutputStream salidaDatos = new ObjectOutputStream(miSocket.getOutputStream());
-                    salidaDatos.writeObject(datos);
-                    
+                    String json = datos.toJson();
+                    //salidaDatos.writeUTF(json);
+                    salidaDatos.writeChars(json);
                     miSocket.close();
 
                 } catch (IOException ex) {
@@ -166,6 +167,7 @@ class paqueteDatos implements Serializable{
     public String toJson() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println(objectMapper.writeValueAsString(this));
             return objectMapper.writeValueAsString(this);
         } catch (Exception e) {
             e.printStackTrace();
@@ -175,6 +177,7 @@ class paqueteDatos implements Serializable{
 
     public static paqueteDatos fromJson(String json) {
         try {
+            System.out.println(json);
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(json, paqueteDatos.class);
         } catch (Exception e) {
