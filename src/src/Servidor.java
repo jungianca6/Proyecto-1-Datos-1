@@ -11,7 +11,7 @@ import java.awt.*;
  */
 class VentanaServer extends JFrame implements Runnable{
     private JPanel panelSV;
-    private JLabel serverLabel;
+    private JLabel serverlabel;
     public VentanaServer(){
         this.setBounds(500,200,400,500);
         setTitle("Servidor");
@@ -37,13 +37,13 @@ class VentanaServer extends JFrame implements Runnable{
     }
 
     private void colocarEtiquetaServer(){
-        serverLabel = new JLabel("Servidor",SwingConstants.CENTER);
-        panelSV.add(serverLabel);
-        serverLabel.setBounds(140,20,100,25);
-        serverLabel.setForeground(Color.WHITE);
-        serverLabel.setBackground(Color.BLACK);
-        serverLabel.setFont(new Font("times new roman", Font.PLAIN,20));
-        serverLabel.setOpaque(true);
+        serverlabel = new JLabel("Servidor",SwingConstants.CENTER);
+        panelSV.add(serverlabel);
+        serverlabel.setBounds(140,20,100,25);
+        serverlabel.setForeground(Color.WHITE);
+        serverlabel.setBackground(Color.BLACK);
+        serverlabel.setFont(new Font("times new roman", Font.PLAIN,20));
+        serverlabel.setOpaque(true);
     }
 
 
