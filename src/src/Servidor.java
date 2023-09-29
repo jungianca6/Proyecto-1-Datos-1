@@ -5,6 +5,15 @@ import javax.swing.*;
 import java.awt.*;
 
 
+
+
+/** mae digame que ya le sale eso
+
+
+
+
+
+
 /**
  * Implementando Runnable hace
  * que siempre esté a la escucha
@@ -60,6 +69,16 @@ class VentanaServer extends JFrame implements Runnable{
                  *que acepte las conexiones del exterior
                  */
                 Socket misocket = servidor.accept();
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(misocket.getInputStream()));
+                String jsonDatos = in.readLine();
+                        /**tengo que revisar esto*/
+                paqueteDatos datosCliente = paqueteDatos.fromJson(jsonDatos);
+                nick = datosCliente.getNick();
+                ip = datosCliente.getIp();
+                mensaje = datosCliente.getMensaje();
+
+
 
                 ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
                 paqueteRecibido= (paqueteDatos) entradaDatos.readObject();
