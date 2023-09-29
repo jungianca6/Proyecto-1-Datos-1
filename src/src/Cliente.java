@@ -96,14 +96,7 @@ class VentanaClient extends JFrame implements Runnable{
 
                     ObjectOutputStream salidaDatos = new ObjectOutputStream(miSocket.getOutputStream());
                     salidaDatos.writeObject(datos);
-
-                    // Convierte los datos a JSON
-                    String jsonDatos = datos.toJson();
-
-                    // Envía el JSON al servidor
-                    PrintWriter out = new PrintWriter(miSocket.getOutputStream(), true);
-                    out.println(jsonDatos);
-
+                    
                     miSocket.close();
 
                 } catch (IOException ex) {
