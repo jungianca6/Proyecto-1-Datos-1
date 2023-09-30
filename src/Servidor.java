@@ -64,9 +64,7 @@ class VentanaServer extends JFrame implements Runnable{
         int tamaño =10;
         int padding = 50;
         for (i=0;i<10;i++) {
-            LinkedList fila = new LinkedList();
             for (j = 0; j<10; j++) {
-                fila.insert(j);
                 JButton puntos = new JButton();
                 int x = i * (tamaño + padding) + padding;
                 int y = j * (tamaño + padding) + padding;
@@ -104,7 +102,6 @@ class VentanaServer extends JFrame implements Runnable{
                  */
                 Socket misocket = servidor.accept();
 
-
                 ObjectInputStream entradaDatos = new ObjectInputStream(misocket.getInputStream());
                 jsonRecibido = (String) entradaDatos.readObject();
                 paqueteRecibido= paqueteDatos.fromJson(jsonRecibido);
@@ -112,7 +109,6 @@ class VentanaServer extends JFrame implements Runnable{
                 nick = paqueteRecibido.getNick();
                 ip = paqueteRecibido.getIp();
                 mensaje = paqueteRecibido.getMensaje();
-
 
                 /**reenvio de datos*/
 
