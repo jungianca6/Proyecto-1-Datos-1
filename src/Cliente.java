@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
  * así como sus componentes.
  * Implementando Runnable hace
  * que siempre esté a la escucha
+ * Métodos:
+ * 
  */
 
 class VentanaClient extends JFrame implements Runnable{

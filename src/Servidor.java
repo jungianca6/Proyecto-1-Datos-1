@@ -9,6 +9,12 @@ import java.awt.*;
  * así como sus componentes.
  * Implementando Runnable hace
  * que siempre esté a la escucha
+ * Atributos: JPanel panelSV y JLabel serverLabel
+ * Metodos:
+ * componentesServer(): void
+ * colocarPanelSV(): void
+ * Botones(): void
+ * colocarEtiquetaServer(): void
  */
 class VentanaServer extends JFrame implements Runnable{
     private JPanel panelSV;
@@ -135,6 +141,14 @@ class VentanaServer extends JFrame implements Runnable{
 /**
  * La clase Node define la estructura de los nodos,
  * así como los datos que pueden guardar
+ * Atributos:
+ * Object data;
+ * Node next;
+ * Métodos:
+ * Object getData();
+ * void setData(Object data);
+ * Node getNext();
+ * void setNext(Node next);
  */
 class Node {
     private Object data;
@@ -163,6 +177,16 @@ class Node {
  * La clase LinkedList utiliza la clase Node como referencia,
  * donde la clase guarda los datos asignados en nodos unidos por punteros,
  * formando la lista enlazada.
+ * Atributos:
+ * head: Node
+ * size: int
+ * tail: Node
+ * Métodos:
+ * LinkedList()
+ * size: int
+ * insert: void
+ * printMatriz: void
+ * printList: void
  */
 class LinkedList{
     private Node head;
@@ -207,6 +231,14 @@ class LinkedList{
  * La clase playerList es una clase que permite
  * crear una lista tipo cola, el cual funciona como
  * la lista de jugadores.
+ * Atributos:
+ * players: LinkedList
+ * head: Node
+ * tail: Node
+ * Métodos:
+ * printList: void
+ * enqueue(Object data): void
+ * dequeue(): Object
  */
 class playerList{
     private LinkedList players;
@@ -249,6 +281,13 @@ class playerList{
 /**
  * La clase Matriz crea una matriz, por medio de una
  * lista de listas enlazadas.
+ * Atributos:
+ * head: Node
+ * tail: Node
+ * n: int
+ * players: LinkedList
+ * Métodos:
+ * formMatriz: void
  */
 class Matriz{
     private int n;
