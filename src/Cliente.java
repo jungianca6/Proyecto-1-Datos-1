@@ -10,10 +10,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import java.util.ArrayList;
-import java.util.List;
 
 
+/**
+ * Esta clase crea la ventana de la interfaz gráfica del cliente,
+ * así como sus componentes.
+ * Implementando Runnable hace
+ * que siempre esté a la escucha
+ */
 
 class VentanaClient extends JFrame implements Runnable{
     private JPanel panel;
@@ -22,7 +26,9 @@ class VentanaClient extends JFrame implements Runnable{
     private JButton boton;
     private JTextArea cajaChat;
 
-
+    /**
+     * Constructor de la ventana
+     */
     public VentanaClient(){
         this.setBounds(500,200,400,500);
         setTitle("Cliente");
@@ -34,6 +40,9 @@ class VentanaClient extends JFrame implements Runnable{
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+    /**
+     * Constructor de los componentes de la ventana
+     */
     private void ComponentesCliente(){
         colocarPanel();
         colocarEtiqueta();
@@ -42,11 +51,13 @@ class VentanaClient extends JFrame implements Runnable{
         colocarAreaText();
     }
 
+    /** Constructor del panel */
     private void colocarPanel(){
         panel = new JPanel();
         panel.setLayout(null);
         this.getContentPane().add(panel);
     }
+    /** Constructor de la etiqueta */
     private void colocarEtiqueta(){
         etiqueta = new JLabel("Cliente",SwingConstants.CENTER);
         panel.add(etiqueta);
@@ -56,6 +67,7 @@ class VentanaClient extends JFrame implements Runnable{
         etiqueta.setFont(new Font("times new roman", Font.PLAIN,20));
         etiqueta.setOpaque(true);
     }
+    /** Constructor de la caja de texto */
     private void colocarCajadeTexto(){
         chatTexto = new JTextField();
         chatTexto.setBounds(60,430,250,20);
@@ -69,12 +81,14 @@ class VentanaClient extends JFrame implements Runnable{
         panel.add(nick);
         panel.add(ip);
     }
+    /** Constructor del area de texto */
     private void colocarAreaText(){
         cajaChat = new JTextArea();
         cajaChat.setBounds(0,130,400,250);
         panel.add(cajaChat);
         cajaChat.setEditable(true);
     }
+    /** Constructor de los botones */
     private void colocarBoton(){
         boton = new JButton("Enviar");
         boton.setBounds(140,390,100,30);
@@ -140,10 +154,11 @@ class VentanaClient extends JFrame implements Runnable{
 }
 
 /**
- * Permite almacenar información a estos atributos
+ * Permite almacenar información a estos atributos, y
  * obtener esa información.
  * El Serializable indica que todas las instancias que
-   pertecenen a esta clase pueden convertirse en una serie de bytes
+   pertecenen a esta clase pueden convertirse en una serie de bytes,
+ * los cuales serán enviador a través del Socket
  */
 class paqueteDatos implements Serializable{
     private String nick, ip, mensaje;

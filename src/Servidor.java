@@ -5,13 +5,19 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *
+ * Esta clase crea la ventana de la interfaz gráfica del servidor,
+ * así como sus componentes.
  * Implementando Runnable hace
  * que siempre esté a la escucha
  */
 class VentanaServer extends JFrame implements Runnable{
     protected JPanel panelSV;
     private JLabel serverLabel;
+
+    /**
+     * constructor de la ventana
+     */
+
     public VentanaServer(){
         this.setBounds(500,200,700,700);
         setTitle("Servidor");
@@ -26,18 +32,26 @@ class VentanaServer extends JFrame implements Runnable{
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+    /**
+     * Constructor de los componentes de la ventana
+     */
     private void componentesServer(){
         colocarPanelSV();
         colocarEtiquetaServer();
         Botones();
-
     }
+    /**
+     * Constructor del panel de la interfaz
+     */
     private void colocarPanelSV(){
         panelSV = new JPanel();
         panelSV.setLayout(null);
         this.getContentPane().add(panelSV);
     }
 
+    /**
+     * Constructor de los botones de la ventana
+     */
     public void Botones(){
         int i;
         int j;
@@ -56,6 +70,9 @@ class VentanaServer extends JFrame implements Runnable{
         }
     }
 
+    /**
+     * Constructor de la etiqueta de la ventana
+     */
     private void colocarEtiquetaServer(){
         serverLabel = new JLabel("Servidor",SwingConstants.CENTER);
         panelSV.add(serverLabel);
@@ -65,7 +82,6 @@ class VentanaServer extends JFrame implements Runnable{
         serverLabel.setFont(new Font("times new roman", Font.PLAIN,20));
         serverLabel.setOpaque(true);
     }
-
 
     @Override
     public void run() {
@@ -77,9 +93,8 @@ class VentanaServer extends JFrame implements Runnable{
 
 
             while(true) {
-
                 /**
-                 *que acepte las conexiones del exterior
+                 *Permite que acepte las conexiones del exterior
                  */
                 Socket misocket = servidor.accept();
 
@@ -117,7 +132,10 @@ class VentanaServer extends JFrame implements Runnable{
         }
     }
 }
-
+/**
+ * La clase Node define la estructura de los nodos,
+ * así como los datos que pueden guardar
+ */
 class Node {
     private Object data;
     protected Node next;
@@ -141,6 +159,11 @@ class Node {
     }
 }
 
+/**
+ * La clase LinkedList utiliza la clase Node como referencia,
+ * donde la clase guarda los datos asignados en nodos unidos por punteros,
+ * formando la lista enlazada.
+ */
 class LinkedList{
     private Node head;
     private int size;
@@ -180,6 +203,11 @@ class LinkedList{
     }
 }
 
+/**
+ * La clase playerList es una clase que permite
+ * crear una lista tipo cola, el cual funciona como
+ * la lista de jugadores.
+ */
 class playerList{
     private LinkedList players;
     private Node head;
@@ -218,34 +246,30 @@ class playerList{
     }
 }
 
-class Matriz extends JFrame{
+/**
+ * La clase Matriz crea una matriz, por medio de una
+ * lista de listas enlazadas.
+ */
+class Matriz{
     private int n;
     private LinkedList matriz;
     private Node head;
     private Node tail;
-    private JButton puntos;
 
     public Matriz(int n) {
         this.n = n;
         matriz = new LinkedList();
         formMatriz();
         this.head=null;
-        setLayout(null);
     }
 
     public void formMatriz(){
         int i;
         int j;
-        int tamaño =30;
-        int padding = 5;
         for (i=0;i<n;i++) {
             LinkedList fila = new LinkedList();
             for (j = 0; j<n; j++) {
                 fila.insert(j);
-                JButton puntos = new JButton();
-                int x = i * (tamaño + padding) + padding;
-                int y = j * (tamaño + padding) + padding;
-                puntos.setBounds(x,y,tamaño,tamaño);
             }
             matriz.insert(fila);
         } matriz.printMatrix();
@@ -254,7 +278,8 @@ class Matriz extends JFrame{
 
 public class Servidor {
     public static void main(String[] args) {
-        /**instancia de la ventana de servidor
+        /**
+         * instancia de la ventana de servidor
          */
         VentanaServer servidor = new VentanaServer();
         servidor.setVisible(true);
