@@ -11,7 +11,7 @@ import java.awt.*;
  * que siempre esté a la escucha
  */
 class VentanaServer extends JFrame implements Runnable{
-    protected JPanel panelSV;
+    private JPanel panelSV;
     private JLabel serverLabel;
 
     /**

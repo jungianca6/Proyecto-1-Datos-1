@@ -123,7 +123,7 @@ class VentanaClient extends JFrame implements Runnable{
     }
 
     /**
-     * hilo que permite que este siempre a la escucha
+     * Hilo permite que este siempre a la escucha
      */
     @Override
     public void run() {
