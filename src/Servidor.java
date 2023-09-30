@@ -4,8 +4,8 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-
 /**
+ *
  * Implementando Runnable hace
  * que siempre esté a la escucha
  */
@@ -252,12 +252,6 @@ class Matriz extends JFrame{
     }
 }
 
-
-//private void colocarBoton(){
-//        boton = new JButton("Enviar");
-//        boton.setBounds(140,390,100,30);
-//        panel.add(boton);
-//        boton.setEnabled(true);
 public class Servidor {
     public static void main(String[] args) {
         /**instancia de la ventana de servidor
