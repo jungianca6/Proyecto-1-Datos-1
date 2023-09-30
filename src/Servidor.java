@@ -10,10 +10,10 @@ import java.awt.*;
  * que siempre esté a la escucha
  */
 class VentanaServer extends JFrame implements Runnable{
-    private JPanel panelSV;
+    protected JPanel panelSV;
     private JLabel serverLabel;
     public VentanaServer(){
-        this.setBounds(500,200,400,500);
+        this.setBounds(500,200,700,700);
         setTitle("Servidor");
 
         componentesServer();
@@ -29,6 +29,8 @@ class VentanaServer extends JFrame implements Runnable{
     private void componentesServer(){
         colocarPanelSV();
         colocarEtiquetaServer();
+        Botones();
+
     }
     private void colocarPanelSV(){
         panelSV = new JPanel();
@@ -36,10 +38,28 @@ class VentanaServer extends JFrame implements Runnable{
         this.getContentPane().add(panelSV);
     }
 
+    public void Botones(){
+        int i;
+        int j;
+        int tamaño =10;
+        int padding = 50;
+        for (i=0;i<10;i++) {
+            LinkedList fila = new LinkedList();
+            for (j = 0; j<10; j++) {
+                fila.insert(j);
+                JButton puntos = new JButton();
+                int x = i * (tamaño + padding) + padding;
+                int y = j * (tamaño + padding) + padding;
+                puntos.setBounds(x,y,tamaño,tamaño);
+                panelSV.add(puntos);
+            }
+        }
+    }
+
     private void colocarEtiquetaServer(){
         serverLabel = new JLabel("Servidor",SwingConstants.CENTER);
         panelSV.add(serverLabel);
-        serverLabel.setBounds(140,20,100,25);
+        serverLabel.setBounds(300,15,100,25);
         serverLabel.setForeground(Color.WHITE);
         serverLabel.setBackground(Color.BLACK);
         serverLabel.setFont(new Font("times new roman", Font.PLAIN,20));
@@ -198,31 +218,41 @@ class playerList{
     }
 }
 
-class Matriz{
+class Matriz extends JFrame{
     private int n;
     private LinkedList matriz;
     private Node head;
     private Node tail;
+    private JButton puntos;
 
     public Matriz(int n) {
         this.n = n;
         matriz = new LinkedList();
         formMatriz();
         this.head=null;
+        setLayout(null);
     }
 
     public void formMatriz(){
         int i;
         int j;
+        int tamaño =30;
+        int padding = 5;
         for (i=0;i<n;i++) {
             LinkedList fila = new LinkedList();
             for (j = 0; j<n; j++) {
                 fila.insert(j);
+                JButton puntos = new JButton();
+                int x = i * (tamaño + padding) + padding;
+                int y = j * (tamaño + padding) + padding;
+                puntos.setBounds(x,y,tamaño,tamaño);
             }
             matriz.insert(fila);
         } matriz.printMatrix();
     }
 }
+
+
 //private void colocarBoton(){
 //        boton = new JButton("Enviar");
 //        boton.setBounds(140,390,100,30);
