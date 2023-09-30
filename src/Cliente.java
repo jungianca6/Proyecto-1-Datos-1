@@ -90,7 +90,6 @@ class VentanaClient extends JFrame implements Runnable{
                     Socket miSocket = new Socket("localhost",9090);
 
                     paqueteDatos datos = new paqueteDatos();
-
                     datos.setNick(nick.getText());
                     datos.setIp(ip.getText());
                     datos.setMensaje(chatTexto.getText());
@@ -116,10 +115,14 @@ class VentanaClient extends JFrame implements Runnable{
     public void run() {
         int port;
         port = 9091;
+        playerList jugadores = new playerList();
         for (int i = port; i<9100;i++){
             try {
                 ServerSocket servidorcliente = new ServerSocket(i);
                 Socket cliente;
+
+                jugadores.enqueue(i);
+
                 paqueteDatos packRecibido;
 
                 while(true){

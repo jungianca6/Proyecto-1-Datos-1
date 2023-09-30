@@ -160,10 +160,49 @@ class LinkedList{
     }
 }
 
+class playerList{
+    private LinkedList players;
+    private Node head;
+    private Node tail;
+
+    public playerList(){
+        players = new LinkedList();
+        this.head=null;
+        this.tail=null;
+    }
+
+    public void enqueue(Object data){
+        if (head==null){
+            head=tail= new Node(data);
+        }else{
+            tail=tail.next = new Node(data);
+        }
+    }
+
+    public void printList(){
+        Node current = this.head;
+        while (current !=null) {
+            System.out.print(current.getData());
+            current = current.getNext();
+        }
+    }
+
+    public Object dequeue() {
+        if (head != null) {
+            Node temp = head;
+            head = head.next;
+            return temp;
+        } else {
+            return null;
+        }
+    }
+}
+
 class Matriz{
     private int n;
     private LinkedList matriz;
     private Node head;
+    private Node tail;
 
     public Matriz(int n) {
         this.n = n;
@@ -184,6 +223,11 @@ class Matriz{
         } matriz.printMatrix();
     }
 }
+//private void colocarBoton(){
+//        boton = new JButton("Enviar");
+//        boton.setBounds(140,390,100,30);
+//        panel.add(boton);
+//        boton.setEnabled(true);
 public class Servidor {
     public static void main(String[] args) {
         /**instancia de la ventana de servidor
